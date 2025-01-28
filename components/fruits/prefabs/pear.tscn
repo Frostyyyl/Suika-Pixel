@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhyqk6436th8d"]
+
+[ext_resource type="Script" path="res://objects/fruits/fruit.gd" id="1_c8exd"]
+[ext_resource type="Texture2D" uid="uid://kyigi7fhogdv" path="res://objects/fruits/sprites/pear.png" id="2_g6lto"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2r4b6"]
+radius = 56.0089
+
+[node name="Pear" type="RigidBody2D"]
+script = ExtResource("1_c8exd")
+fruit_id = 6
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_g6lto")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2r4b6")

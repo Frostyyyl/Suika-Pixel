@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6ak3jaulrkax"]
+
+[ext_resource type="Script" path="res://objects/gui/text_button.gd" id="1_e7lef"]
+[ext_resource type="Theme" uid="uid://b0vg0mmsp0jr1" path="res://themes/game_theme.tres" id="2_l8qm5"]
+[ext_resource type="Material" uid="uid://nshyuda1ag7" path="res://themes/ui_label.tres" id="3_uo47g"]
+
+[node name="TextButton" type="MarginContainer"]
+offset_right = 114.0
+offset_bottom = 57.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_e7lef")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme = ExtResource("2_l8qm5")
+
+[node name="Label" type="Label" parent="."]
+material = ExtResource("3_uo47g")
+layout_mode = 2
+theme_type_variation = &"UILabel"
+text = "TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_pressed"]

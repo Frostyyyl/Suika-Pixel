@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0ys3ewp2wd5r"]
+
+[ext_resource type="Texture2D" uid="uid://cp6cm243kf0k2" path="res://sprites/background.png" id="2_7fhxs"]
+[ext_resource type="PackedScene" uid="uid://bn44yx713nxml" path="res://audio/sounds_installer.tscn" id="2_nibix"]
+[ext_resource type="PackedScene" uid="uid://c6ak3jaulrkax" path="res://objects/gui/text_button.tscn" id="3_h371j"]
+[ext_resource type="Material" uid="uid://dmd7rgp2eboq1" path="res://themes/red_label.tres" id="4_1aafn"]
+[ext_resource type="PackedScene" uid="uid://bj8g06gv3l44m" path="res://objects/gui/information.tscn" id="6_6gbr0"]
+[ext_resource type="PackedScene" uid="uid://dndtahn2wkytg" path="res://objects/gui/audio_settings.tscn" id="6_qbyeq"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SoundsInstaller" parent="." instance=ExtResource("2_nibix")]
+root_paths = Array[NodePath]([NodePath("../HUD/Area/Column/Row/Column/PlayButton"), NodePath("../HUD/Area/Column/Row/Column/AudioButton"), NodePath("../HUD/Area/Column/Row/Column/ExitButton"), NodePath("../HUD/Area/Column/Row/Column/HelpButton")])
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(182, 384)
+scale = Vector2(2, 2)
+texture = ExtResource("2_7fhxs")
+region_enabled = true
+region_rect = Rect2(-1271, -459, 2755, 1174)
+
+[node name="HUD" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -400.0
+offset_right = 225.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Area" type="MarginContainer" parent="HUD"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 2
+
+[node name="Column" type="VBoxContainer" parent="HUD/Area"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="HUD/Area/Column"]
+material = ExtResource("4_1aafn")
+layout_mode = 2
+theme_type_variation = &"Title"
+text = "SUIKA
+"
+horizontal_alignment = 1
+
+[node name="BottomText" type="Label" parent="HUD/Area/Column"]
+material = ExtResource("4_1aafn")
+layout_mode = 2
+theme_type_variation = &"TitleSmall"
+text = "PIXEL"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="HUD/Area/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.8
+
+[node name="Row" type="HBoxContainer" parent="HUD/Area/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Spacer" type="Control" parent="HUD/Area/Column/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Column" type="VBoxContainer" parent="HUD/Area/Column/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+alignment = 1
+
+[node name="PlayButton" parent="HUD/Area/Column/Row/Column" instance=ExtResource("3_h371j")]
+layout_mode = 2
+text = "PLAY"
+
+[node name="HelpButton" parent="HUD/Area/Column/Row/Column" instance=ExtResource("3_h371j")]
+layout_mode = 2
+text = "HOW TO PLAY"
+
+[node name="AudioButton" parent="HUD/Area/Column/Row/Column" instance=ExtResource("3_h371j")]
+layout_mode = 2
+text = "AUDIO"
+
+[node name="ExitButton" parent="HUD/Area/Column/Row/Column" instance=ExtResource("3_h371j")]
+layout_mode = 2
+text = "EXIT"
+
+[node name="Spacer2" type="Control" parent="HUD/Area/Column/Row/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Spacer2" type="Control" parent="HUD/Area/Column/Row"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="AudioSettings" parent="." instance=ExtResource("6_qbyeq")]
+visible = false
+layout_mode = 1
+
+[node name="Information" parent="." instance=ExtResource("6_6gbr0")]
+layout_mode = 1
+
+[connection signal="pressed" from="HUD/Area/Column/Row/Column/PlayButton" to="HUD/Area/Column/Row/Column/PlayButton" method="_load_scene" binds= [1]]
+[connection signal="pressed" from="HUD/Area/Column/Row/Column/HelpButton" to="Information" method="set_visible" binds= [true]]
+[connection signal="pressed" from="HUD/Area/Column/Row/Column/AudioButton" to="AudioSettings" method="set_visible" binds= [true]]
+[connection signal="pressed" from="HUD/Area/Column/Row/Column/ExitButton" to="HUD/Area/Column/Row/Column/ExitButton" method="_quit_game"]

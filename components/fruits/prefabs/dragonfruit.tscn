@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://xdil7t03sfn7"]
+
+[ext_resource type="Script" path="res://objects/fruits/fruit.gd" id="1_k1xp0"]
+[ext_resource type="Texture2D" uid="uid://bivvsuaykhqy7" path="res://objects/fruits/sprites/dragonfruit.png" id="2_ljer3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8vsq8"]
+radius = 82.0
+
+[node name="Dragonfruit" type="RigidBody2D"]
+script = ExtResource("1_k1xp0")
+fruit_id = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -2)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ljer3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8vsq8")

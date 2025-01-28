@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://boftpia4jmmqs"]
+
+[ext_resource type="Texture2D" uid="uid://daaavn0n6k2ft" path="res://sprites/background.png" id="1_52jis"]
+[ext_resource type="Script" path="res://scripts/generator.gd" id="2_p4322"]
+
+[node name="Scene" type="Node2D"]
+script = ExtResource("2_p4322")
+yPos = 40
+xMinPos = 100
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Background" type="Sprite2D" parent="Camera2D"]
+z_index = -1
+scale = Vector2(4, 4)
+texture = ExtResource("1_52jis")
+centered = false
+
+[node name="Basket" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Basket"]
+position = Vector2(-687, 771)
+polygon = PackedVector2Array(687, -400, 727, -400, 727, 641, 1475, 641, 1475, -400, 1515, -400, 1515, 701, 687, 701)
+
+[node name="ColorRect2" type="ColorRect" parent="Basket"]
+offset_left = -21.0
+offset_top = 1412.0
+offset_right = 849.0
+offset_bottom = 1497.0
+
+[node name="ColorRect" type="ColorRect" parent="Basket"]
+offset_left = -21.0
+offset_top = 371.0
+offset_right = 40.0
+offset_bottom = 1412.0
+
+[node name="ColorRect" type="ColorRect" parent="Basket/ColorRect"]
+offset_left = 809.0
+offset_right = 870.0
+offset_bottom = 1041.0

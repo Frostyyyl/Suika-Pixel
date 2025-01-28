@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://c42u1eite0gm3"]
+
+[ext_resource type="Texture2D" uid="uid://j66lyx3yvkbs" path="res://objects/particles/confetti.png" id="1_1xcub"]
+[ext_resource type="Texture2D" uid="uid://ce8hqy2efd8fm" path="res://objects/particles/color_ramp.tres" id="1_sx061"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b01ax"]
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2sht4"]
+lifetime_randomness = 0.4
+particle_flag_disable_z = true
+angle_min = -180.0
+angle_max = 180.0
+direction = Vector3(0, -1, 0)
+spread = 90.0
+initial_velocity_min = 100.0
+initial_velocity_max = 300.0
+angular_velocity_min = -200.0
+angular_velocity_max = 200.0
+gravity = Vector3(0, 300, 0)
+scale_min = 2.0
+scale_max = 7.0
+color_ramp = ExtResource("1_sx061")
+anim_offset_max = 1.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+top_level = true
+material = SubResource("CanvasItemMaterial_b01ax")
+position = Vector2(-7, 209)
+emitting = false
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_2sht4")
+texture = ExtResource("1_1xcub")
+lifetime = 1.4
+one_shot = true
+explosiveness = 0.9
+
+[connection signal="finished" from="." to="." method="queue_free"]

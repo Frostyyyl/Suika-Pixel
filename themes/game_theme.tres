@@ -1,0 +1,163 @@
+[gd_resource type="Theme" load_steps=20 format=3 uid="uid://b0vg0mmsp0jr1"]
+
+[ext_resource type="FontFile" uid="uid://ynu8r7d3qjr1" path="res://themes/PixelWide.ttf" id="1_4mx3a"]
+[ext_resource type="Texture2D" uid="uid://c75gul3rr0b2u" path="res://objects/gui/sprites/close.png" id="2_k35sy"]
+[ext_resource type="Texture2D" uid="uid://cjrsxrs67jg1w" path="res://objects/gui/sprites/cog.png" id="3_1gwef"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rejue"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.3)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1g8ry"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n0wa1"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.225, 0.225, 0.225, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d35p2"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6wxh1"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0, 0, 0, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ixykd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q2x0a"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_t46s1"]
+texture = ExtResource("2_k35sy")
+region_rect = Rect2(56, 0, 28, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_j7u78"]
+texture = ExtResource("2_k35sy")
+region_rect = Rect2(28, 0, 28, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y3f6j"]
+texture = ExtResource("2_k35sy")
+region_rect = Rect2(0, 0, 28, 30)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5bd1g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jp2h4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u7q17"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_srvlk"]
+texture = ExtResource("3_1gwef")
+region_rect = Rect2(56, 0, 28, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wmvbk"]
+texture = ExtResource("3_1gwef")
+region_rect = Rect2(28, 0, 28, 30)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gnv08"]
+texture = ExtResource("3_1gwef")
+region_rect = Rect2(0, 0, 28, 30)
+
+[resource]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
+Button/colors/font_focus_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_color = Color(0.95, 0.95, 0.95, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_outline_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_disabled_color = Color(1, 1, 1, 0.4)
+Button/colors/icon_focus_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_color = Color(1, 1, 1, 1)
+Button/colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/icon_normal_color = Color(1, 1, 1, 1)
+Button/colors/icon_pressed_color = Color(1, 1, 1, 1)
+Button/constants/h_separation = 4
+Button/constants/icon_max_width = 0
+Button/constants/outline_size = 0
+Button/font_sizes/font_size = 26
+Button/fonts/font = ExtResource("1_4mx3a")
+Button/styles/disabled = SubResource("StyleBoxFlat_rejue")
+Button/styles/focus = SubResource("StyleBoxFlat_1g8ry")
+Button/styles/hover = SubResource("StyleBoxFlat_n0wa1")
+Button/styles/normal = SubResource("StyleBoxFlat_d35p2")
+Button/styles/pressed = SubResource("StyleBoxFlat_6wxh1")
+CloseButton/base_type = &"Button"
+CloseButton/styles/disabled = SubResource("StyleBoxEmpty_ixykd")
+CloseButton/styles/focus = SubResource("StyleBoxEmpty_q2x0a")
+CloseButton/styles/hover = SubResource("StyleBoxTexture_t46s1")
+CloseButton/styles/normal = SubResource("StyleBoxTexture_j7u78")
+CloseButton/styles/pressed = SubResource("StyleBoxTexture_y3f6j")
+HeaderLarge/base_type = &"Label"
+HeaderLarge/font_sizes/font_size = 32
+HeaderSmall/font_sizes/font_size = 16
+Label/colors/font_color = Color(1, 1, 1, 1)
+Label/colors/font_outline_color = Color(0.745098, 0, 0, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 1)
+Label/constants/line_spacing = 0
+Label/constants/outline_size = 0
+Label/constants/shadow_offset_x = 0
+Label/constants/shadow_offset_y = 0
+Label/constants/shadow_outline_size = 0
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_4mx3a")
+Label/styles/normal = SubResource("StyleBoxEmpty_5bd1g")
+SettingsButton/base_type = &"Button"
+SettingsButton/styles/disabled = SubResource("StyleBoxEmpty_jp2h4")
+SettingsButton/styles/focus = SubResource("StyleBoxEmpty_u7q17")
+SettingsButton/styles/hover = SubResource("StyleBoxTexture_srvlk")
+SettingsButton/styles/normal = SubResource("StyleBoxTexture_wmvbk")
+SettingsButton/styles/pressed = SubResource("StyleBoxTexture_gnv08")
+Title/base_type = &"Label"
+Title/font_sizes/font_size = 100
+TitleSmall/base_type = &"Label"
+TitleSmall/font_sizes/font_size = 64

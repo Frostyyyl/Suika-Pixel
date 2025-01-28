@@ -1,0 +1,157 @@
+[gd_scene load_steps=15 format=3 uid="uid://boftpia4jmmqs"]
+
+[ext_resource type="Texture2D" uid="uid://daaavn0n6k2ft" path="res://sprites/background.png" id="1_52jis"]
+[ext_resource type="Script" path="res://scripts/game_logic.gd" id="2_p4322"]
+[ext_resource type="Script" path="res://scripts/game_over_area.gd" id="3_wbdb2"]
+[ext_resource type="Texture2D" uid="uid://csbjnxh0f7rxt" path="res://sprites/info.png" id="4_62ja4"]
+[ext_resource type="Texture2D" uid="uid://bji0jj0hu0uea" path="res://sprites/cog.png" id="5_eclyg"]
+[ext_resource type="Script" path="res://scripts/settings_button.gd" id="5_g1m45"]
+[ext_resource type="Script" path="res://scripts/information_button.gd" id="7_amefu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unf7j"]
+size = Vector2(746, 18)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4p66"]
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rqt4"]
+font_size = 32
+font_color = Color(1, 1, 1, 0.537255)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osf2p"]
+atlas = ExtResource("5_eclyg")
+region = Rect2(0, 0, 112, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mhbrp"]
+atlas = ExtResource("5_eclyg")
+region = Rect2(0, 0, 112, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rjq8m"]
+atlas = ExtResource("4_62ja4")
+region = Rect2(0, 0, 63, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vhvw"]
+atlas = ExtResource("4_62ja4")
+region = Rect2(63, 0, 63, 63)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("2_p4322")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="Background" type="Sprite2D" parent="Camera2D"]
+top_level = true
+z_index = -1
+position = Vector2(336, 60)
+scale = Vector2(4, 4)
+texture = ExtResource("1_52jis")
+centered = false
+offset = Vector2(-84, -14.25)
+
+[node name="Basket" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Basket"]
+position = Vector2(-687, 771)
+polygon = PackedVector2Array(687, -400, 727, -400, 727, 641, 1475, 641, 1475, -400, 1515, -400, 1515, 701, 687, 701)
+
+[node name="LeftWall" type="ColorRect" parent="Basket"]
+offset_left = -21.0
+offset_top = 371.0
+offset_right = 40.0
+offset_bottom = 1412.0
+
+[node name="RightWall" type="ColorRect" parent="Basket"]
+offset_left = 788.0
+offset_top = 371.0
+offset_right = 849.0
+offset_bottom = 1412.0
+
+[node name="Base" type="ColorRect" parent="Basket"]
+offset_left = -21.0
+offset_top = 1412.0
+offset_right = 849.0
+offset_bottom = 1497.0
+
+[node name="GameOverArea" type="Area2D" parent="."]
+process_mode = 1
+position = Vector2(413, 340)
+script = ExtResource("3_wbdb2")
+min_speed = 0.01
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_unf7j")
+one_way_collision_margin = 0.0
+debug_color = Color(0.689191, 0.417521, 0.71304, 0.42)
+
+[node name="GameOverScreen" type="ColorRect" parent="."]
+visible = false
+top_level = true
+offset_right = 828.0
+offset_bottom = 1472.0
+color = Color(0, 0, 0, 0.254902)
+
+[node name="TopText" type="Label" parent="GameOverScreen"]
+layout_mode = 0
+offset_right = 828.0
+offset_bottom = 726.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_a4p66")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="BottomText" type="Label" parent="GameOverScreen"]
+layout_mode = 0
+offset_right = 828.0
+offset_bottom = 1472.0
+text = "PRESS TO PLAY AGAIN"
+label_settings = SubResource("LabelSettings_1rqt4")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="GUI" type="VBoxContainer" parent="."]
+offset_right = 828.0
+offset_bottom = 610.0
+
+[node name="Bar1" type="HBoxContainer" parent="GUI"]
+layout_mode = 2
+
+[node name="SettingsButton" type="TextureButton" parent="GUI/Bar1"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_osf2p")
+texture_pressed = SubResource("AtlasTexture_mhbrp")
+texture_hover = SubResource("AtlasTexture_mhbrp")
+script = ExtResource("5_g1m45")
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI"]
+custom_minimum_size = Vector2(568, 350)
+layout_mode = 2
+
+[node name="Bar2" type="HBoxContainer" parent="GUI"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI/Bar2"]
+custom_minimum_size = Vector2(347, 0)
+layout_mode = 2
+
+[node name="InformationButton" type="TextureButton" parent="GUI/Bar2"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_rjq8m")
+texture_pressed = SubResource("AtlasTexture_rjq8m")
+texture_hover = SubResource("AtlasTexture_7vhvw")
+script = ExtResource("7_amefu")
+
+[node name="MarginContainer2" type="MarginContainer" parent="GUI/Bar2"]
+custom_minimum_size = Vector2(347, 0)
+layout_mode = 2
+
+[connection signal="game_over" from="GameOverArea" to="." method="_on_game_over"]
+[connection signal="mouse_entered" from="GUI/Bar1/SettingsButton" to="." method="_disable_inputs"]
+[connection signal="mouse_exited" from="GUI/Bar1/SettingsButton" to="." method="_enable_inputs"]
+[connection signal="pause" from="GUI/Bar1/SettingsButton" to="." method="_pause"]
+[connection signal="turn_visible" from="GUI/Bar1/SettingsButton" to="GUI/Bar2/InformationButton" method="_turn_visible"]
+[connection signal="mouse_entered" from="GUI/Bar2/InformationButton" to="." method="_disable_inputs"]
+[connection signal="mouse_exited" from="GUI/Bar2/InformationButton" to="." method="_enable_inputs"]
+[connection signal="unpause" from="GUI/Bar2/InformationButton" to="." method="_unpause"]

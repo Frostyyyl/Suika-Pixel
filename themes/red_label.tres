@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dmd7rgp2eboq1"]
+
+[ext_resource type="Shader" path="res://themes/text_shader.gdshader" id="1_xm3r8"]
+[ext_resource type="Texture2D" uid="uid://dpkfjkjvrckg" path="res://sprites/settings_background.png" id="2_rvnj3"]
+
+[resource]
+shader = ExtResource("1_xm3r8")
+shader_parameter/angle = 0.0
+shader_parameter/thickness = 10.0
+shader_parameter/scale = 1.0
+shader_parameter/shear = Vector2(0, -0.4)
+shader_parameter/slices = 16
+shader_parameter/outline = true
+shader_parameter/outline_width = 2.0
+shader_parameter/side_tex = ExtResource("2_rvnj3")
+shader_parameter/show_bound = false

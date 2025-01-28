@@ -1,0 +1,109 @@
+[gd_scene load_steps=5 format=3 uid="uid://dndtahn2wkytg"]
+
+[ext_resource type="PackedScene" uid="uid://bn44yx713nxml" path="res://audio/sounds_installer.tscn" id="1_7e4p6"]
+[ext_resource type="Texture2D" uid="uid://bab825t1xweol" path="res://sprites/audio_background.png" id="2_nqssf"]
+[ext_resource type="Material" uid="uid://nshyuda1ag7" path="res://themes/ui_label.tres" id="3_07mna"]
+[ext_resource type="Script" path="res://objects/gui/volume_slider.gd" id="4_abv2l"]
+
+[node name="AudioSettings" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SoundsInstaller" parent="." instance=ExtResource("1_7e4p6")]
+root_paths = Array[NodePath]([NodePath("../Container/Margain/Column/Master"), NodePath("../Container/Margain/Column/Music"), NodePath("../Container/Margain/Column/Sound"), NodePath("../Container/Margain/Column/ExitButton")])
+
+[node name="Blocker" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Container" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="Container"]
+layout_mode = 2
+texture = ExtResource("2_nqssf")
+stretch_mode = 2
+
+[node name="Margain" type="MarginContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 2
+
+[node name="Column" type="VBoxContainer" parent="Container/Margain"]
+layout_mode = 2
+
+[node name="ExitButton" type="Button" parent="Container/Margain/Column"]
+custom_minimum_size = Vector2(56, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_type_variation = &"CloseButton"
+
+[node name="Spacer" type="Control" parent="Container/Margain/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MasterLabel" type="Label" parent="Container/Margain/Column"]
+material = ExtResource("3_07mna")
+layout_mode = 2
+text = "MASTER VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Master" type="HSlider" parent="Container/Margain/Column" groups=["PersistSettings"]]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("4_abv2l")
+bus_name = "Master"
+
+[node name="Spacer4" type="Control" parent="Container/Margain/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="MusicLabel" type="Label" parent="Container/Margain/Column"]
+material = ExtResource("3_07mna")
+layout_mode = 2
+text = "MUSIC VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Music" type="HSlider" parent="Container/Margain/Column" groups=["PersistSettings"]]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("4_abv2l")
+bus_name = "Music"
+
+[node name="Spacer2" type="Control" parent="Container/Margain/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="SoundLabel" type="Label" parent="Container/Margain/Column"]
+material = ExtResource("3_07mna")
+layout_mode = 2
+text = "SOUND VOLUME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Sound" type="HSlider" parent="Container/Margain/Column" groups=["PersistSettings"]]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+script = ExtResource("4_abv2l")
+bus_name = "Sfx"
+
+[node name="Spacer3" type="Control" parent="Container/Margain/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[connection signal="pressed" from="Container/Margain/Column/ExitButton" to="." method="set_visible" binds= [false]]

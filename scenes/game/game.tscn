@@ -1,0 +1,314 @@
+[gd_scene load_steps=21 format=3 uid="uid://boftpia4jmmqs"]
+
+[ext_resource type="Script" path="res://scenes/game/scripts/game.gd" id="1_ackha"]
+[ext_resource type="Texture2D" uid="uid://cp6cm243kf0k2" path="res://sprites/background.png" id="2_uuckd"]
+[ext_resource type="Script" path="res://scenes/game/scripts/game_over_area.gd" id="3_qfu5n"]
+[ext_resource type="Script" path="res://scenes/game/scripts/camera.gd" id="3_sktku"]
+[ext_resource type="Material" uid="uid://dmd7rgp2eboq1" path="res://themes/red_label.tres" id="5_7gihh"]
+[ext_resource type="Theme" uid="uid://b0vg0mmsp0jr1" path="res://themes/game_theme.tres" id="6_meygt"]
+[ext_resource type="Script" path="res://scenes/game/scripts/score.gd" id="7_1her5"]
+[ext_resource type="Material" uid="uid://nshyuda1ag7" path="res://themes/ui_label.tres" id="8_5w5ye"]
+[ext_resource type="Shader" path="res://themes/blink_shader.gdshader" id="8_j8hno"]
+[ext_resource type="Texture2D" uid="uid://dpkfjkjvrckg" path="res://sprites/settings_background.png" id="9_pp2ss"]
+[ext_resource type="PackedScene" uid="uid://c6ak3jaulrkax" path="res://objects/gui/text_button.tscn" id="10_iljil"]
+[ext_resource type="PackedScene" uid="uid://dndtahn2wkytg" path="res://objects/gui/audio_settings.tscn" id="11_7e22p"]
+[ext_resource type="PackedScene" uid="uid://bn44yx713nxml" path="res://audio/sounds_installer.tscn" id="12_2cbq7"]
+[ext_resource type="PackedScene" uid="uid://bj8g06gv3l44m" path="res://objects/gui/information.tscn" id="13_f01nf"]
+
+[sub_resource type="Gradient" id="Gradient_l5pfl"]
+offsets = PackedFloat32Array(0, 0.52795, 1)
+colors = PackedColorArray(1, 1, 1, 0.258824, 1, 1, 1, 0.258824, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lp4ff"]
+gradient = SubResource("Gradient_l5pfl")
+width = 4
+fill_from = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unf7j"]
+size = Vector2(410, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_a4p66"]
+font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_1rqt4"]
+font_size = 24
+font_color = Color(1, 1, 1, 0.537255)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bnptk"]
+shader = ExtResource("8_j8hno")
+shader_parameter/blink_color = Color(1, 1, 1, 1)
+shader_parameter/blink_intensity = 0.0
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ackha")
+y_drop_pos = 154
+new_fruit_offset = Vector2(50, 30)
+
+[node name="SoundsInstaller" parent="." instance=ExtResource("12_2cbq7")]
+root_paths = Array[NodePath]([NodePath("../GUI/HUD/Row/SettingsButton"), NodePath("../GUI/Settings/Container/Margain/Column/CloseButton"), NodePath("../GUI/Settings/Container/Margain/Column/RetryButton"), NodePath("../GUI/Settings/Container/Margain/Column/HelpButton"), NodePath("../GUI/Settings/Container/Margain/Column/ExitButton"), NodePath("../GUI/Settings/Container/Margain/Column/AudioButton")])
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+script = ExtResource("3_sktku")
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -1
+texture_repeat = 2
+position = Vector2(-1492, -562)
+scale = Vector2(2, 2)
+texture = ExtResource("2_uuckd")
+centered = false
+region_enabled = true
+region_rect = Rect2(-746, -393, 1753, 1036)
+
+[node name="ColorRect" type="TextureRect" parent="."]
+offset_left = 192.0
+offset_top = 879.0
+offset_right = 196.0
+offset_bottom = 2010.0
+texture = SubResource("GradientTexture2D_lp4ff")
+
+[node name="Basket" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Basket"]
+position = Vector2(-687, 771)
+polygon = PackedVector2Array(687, -771, 707, -567, 707, 9, 1117, 9, 1117, -567, 1137, -771, 1137, 29, 687, 29)
+
+[node name="LeftWall" type="ColorRect" parent="Basket"]
+offset_top = 204.0
+offset_right = 20.0
+offset_bottom = 780.0
+
+[node name="RightWall" type="ColorRect" parent="Basket"]
+offset_left = 430.0
+offset_top = 204.0
+offset_right = 450.0
+offset_bottom = 780.0
+
+[node name="Base" type="ColorRect" parent="Basket"]
+offset_top = 780.0
+offset_right = 450.0
+offset_bottom = 820.0
+
+[node name="GameOverArea" type="Area2D" parent="."]
+position = Vector2(207, 189)
+script = ExtResource("3_qfu5n")
+min_speed = 0.01
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverArea"]
+position = Vector2(18, 0)
+shape = SubResource("RectangleShape2D_unf7j")
+one_way_collision_margin = 0.0
+debug_color = Color(0.689191, 0.417521, 0.71304, 0.42)
+
+[node name="ColorRect" type="ColorRect" parent="GameOverArea"]
+offset_left = -187.0
+offset_top = 15.0
+offset_right = 223.0
+offset_bottom = 21.0
+color = Color(0.807843, 0.298039, 0.34902, 0.705882)
+
+[node name="GUI" type="CanvasLayer" parent="."]
+
+[node name="GameOverScreen" type="MarginContainer" parent="GUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="GUI/GameOverScreen"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.254902)
+
+[node name="Column" type="VBoxContainer" parent="GUI/GameOverScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="TopText" type="Label" parent="GUI/GameOverScreen/Column"]
+material = ExtResource("5_7gihh")
+layout_mode = 2
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_a4p66")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomText" type="Label" parent="GUI/GameOverScreen/Column"]
+material = ExtResource("5_7gihh")
+layout_mode = 2
+text = "PRESS TO PLAY AGAIN"
+label_settings = SubResource("LabelSettings_1rqt4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HUD" type="MarginContainer" parent="GUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_meygt")
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 2
+
+[node name="Row" type="HBoxContainer" parent="GUI/HUD"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="SettingsButton" type="Button" parent="GUI/HUD/Row"]
+material = SubResource("ShaderMaterial_bnptk")
+custom_minimum_size = Vector2(56, 60)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("6_meygt")
+theme_type_variation = &"SettingsButton"
+
+[node name="Container" type="MarginContainer" parent="GUI/HUD/Row" groups=["PersistGame"]]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+script = ExtResource("7_1her5")
+
+[node name="Row" type="HBoxContainer" parent="GUI/HUD/Row/Container"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="ScoreText" type="Label" parent="GUI/HUD/Row/Container/Row"]
+material = ExtResource("8_5w5ye")
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"HeaderLarge"
+text = "SCORE:"
+
+[node name="Score" type="Label" parent="GUI/HUD/Row/Container/Row"]
+material = ExtResource("5_7gihh")
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderLarge"
+text = "0"
+autowrap_mode = 1
+
+[node name="NextText" type="Label" parent="GUI/HUD/Row/Container/Row"]
+material = ExtResource("8_5w5ye")
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+size_flags_stretch_ratio = 8.06
+text = " NEXT "
+horizontal_alignment = 1
+
+[node name="Container" type="MarginContainer" parent="GUI/HUD/Row/Container"]
+layout_mode = 2
+theme_override_constants/margin_top = 36
+
+[node name="Row" type="HBoxContainer" parent="GUI/HUD/Row/Container/Container"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="BestText" type="Label" parent="GUI/HUD/Row/Container/Container/Row"]
+material = ExtResource("8_5w5ye")
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_type_variation = &"HeaderSmall"
+text = "BEST:"
+
+[node name="Best" type="Label" parent="GUI/HUD/Row/Container/Container/Row"]
+material = ExtResource("5_7gihh")
+custom_minimum_size = Vector2(72, 0)
+layout_mode = 2
+theme_type_variation = &"HeaderSmall"
+text = "0"
+vertical_alignment = 1
+autowrap_mode = 1
+
+[node name="Settings" type="MarginContainer" parent="GUI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shadow" type="ColorRect" parent="GUI/Settings"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.254902)
+
+[node name="Container" type="MarginContainer" parent="GUI/Settings"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Background" type="TextureRect" parent="GUI/Settings/Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("9_pp2ss")
+stretch_mode = 2
+
+[node name="Margain" type="MarginContainer" parent="GUI/Settings/Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 2
+
+[node name="Column" type="VBoxContainer" parent="GUI/Settings/Container/Margain"]
+layout_mode = 2
+alignment = 2
+
+[node name="CloseButton" type="Button" parent="GUI/Settings/Container/Margain/Column"]
+custom_minimum_size = Vector2(56, 60)
+layout_mode = 2
+size_flags_horizontal = 8
+theme_type_variation = &"CloseButton"
+
+[node name="Spacer" type="Control" parent="GUI/Settings/Container/Margain/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RetryButton" parent="GUI/Settings/Container/Margain/Column" instance=ExtResource("10_iljil")]
+layout_mode = 2
+text = "RETRY"
+
+[node name="AudioButton" parent="GUI/Settings/Container/Margain/Column" instance=ExtResource("10_iljil")]
+layout_mode = 2
+text = "AUDIO"
+
+[node name="HelpButton" parent="GUI/Settings/Container/Margain/Column" instance=ExtResource("10_iljil")]
+layout_mode = 2
+text = "HOW TO PLAY"
+
+[node name="ExitButton" parent="GUI/Settings/Container/Margain/Column" instance=ExtResource("10_iljil")]
+layout_mode = 2
+text = "EXIT"
+
+[node name="Spacer2" type="Control" parent="GUI/Settings/Container/Margain/Column"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AudioSettings" parent="GUI" instance=ExtResource("11_7e22p")]
+visible = false
+
+[node name="Information" parent="GUI" instance=ExtResource("13_f01nf")]
+
+[connection signal="game_over" from="GameOverArea" to="." method="on_game_over"]
+[connection signal="mouse_entered" from="GUI/HUD/Row/SettingsButton" to="." method="set_inputs" binds= [false]]
+[connection signal="mouse_exited" from="GUI/HUD/Row/SettingsButton" to="." method="set_inputs" binds= [true]]
+[connection signal="pressed" from="GUI/HUD/Row/SettingsButton" to="." method="set_pause" binds= [true]]
+[connection signal="pressed" from="GUI/HUD/Row/SettingsButton" to="." method="set_ui" binds= [true]]
+[connection signal="pressed" from="GUI/HUD/Row/SettingsButton" to="GUI/Settings" method="set_visible" binds= [true]]
+[connection signal="pressed" from="GUI/Settings/Container/Margain/Column/CloseButton" to="." method="set_pause" binds= [false]]
+[connection signal="pressed" from="GUI/Settings/Container/Margain/Column/CloseButton" to="." method="set_ui" binds= [false]]
+[connection signal="pressed" from="GUI/Settings/Container/Margain/Column/CloseButton" to="GUI/Settings" method="set_visible" binds= [false]]
+[connection signal="pressed" from="GUI/Settings/Container/Margain/Column/RetryButton" to="GUI/Settings/Container/Margain/Column/RetryButton" method="_load_scene" binds= [1]]
+[connection signal="pressed" from="GUI/Settings/Container/Margain/Column/AudioButton" to="GUI/AudioSettings" method="set_visible" binds= [true]]
+[connection signal="pressed" from="GUI/Settings/Container/Margain/Column/HelpButton" to="GUI/Information" method="set_visible" binds= [true]]
+[connection signal="pressed" from="GUI/Settings/Container/Margain/Column/ExitButton" to="GUI/Settings/Container/Margain/Column/ExitButton" method="_load_scene" binds= [0]]

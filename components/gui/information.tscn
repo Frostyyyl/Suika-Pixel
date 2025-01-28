@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj8g06gv3l44m"]
+
+[ext_resource type="Texture2D" uid="uid://1s8slhwgpyud" path="res://sprites/info_background.png" id="1_4hnx0"]
+[ext_resource type="PackedScene" uid="uid://bn44yx713nxml" path="res://audio/sounds_installer.tscn" id="1_xv1id"]
+
+[node name="Information" type="MarginContainer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="SoundsInstaller" parent="." instance=ExtResource("1_xv1id")]
+root_paths = Array[NodePath]([NodePath("../Container/Margain/Row/CloseButton")])
+
+[node name="Blocker" type="ColorRect" parent="."]
+layout_mode = 2
+color = Color(1, 1, 1, 0)
+
+[node name="Container" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Background" type="TextureRect" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_4hnx0")
+stretch_mode = 2
+
+[node name="Margain" type="MarginContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 2
+
+[node name="Row" type="HBoxContainer" parent="Container/Margain"]
+layout_mode = 2
+alignment = 2
+
+[node name="CloseButton" type="Button" parent="Container/Margain/Row"]
+custom_minimum_size = Vector2(56, 60)
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"CloseButton"
+
+[connection signal="pressed" from="Container/Margain/Row/CloseButton" to="." method="set_visible" binds= [false]]

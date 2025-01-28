@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://d07gif6f4bpuw"]
+
+[ext_resource type="PhysicsMaterial" uid="uid://dl7v2kfmpixr6" path="res://scenes/resources/fruit_material.tres" id="1_cm07b"]
+[ext_resource type="Script" path="res://scripts/fruits_base.gd" id="2_030s8"]
+[ext_resource type="Texture2D" uid="uid://b5p38irkrqt68" path="res://sprites/fruits/cherry.png" id="3_6cq7n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wapq5"]
+radius = 30.0
+
+[node name="Cherry" type="RigidBody2D"]
+position = Vector2(2, 2)
+physics_material_override = ExtResource("1_cm07b")
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("2_030s8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("3_6cq7n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -2)
+shape = SubResource("CircleShape2D_wapq5")

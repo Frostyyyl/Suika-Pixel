@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://co6s668hfaup5"]
+
+[ext_resource type="Script" path="res://objects/fruits/fruit.gd" id="1_4qrph"]
+[ext_resource type="Texture2D" uid="uid://dp0g4wp1b5mdt" path="res://objects/fruits/sprites/depokon.png" id="2_708ul"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6n60v"]
+radius = 34.0
+
+[node name="Lemon" type="RigidBody2D"]
+script = ExtResource("1_4qrph")
+fruit_id = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(2, 2)
+texture = ExtResource("2_708ul")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6n60v")
